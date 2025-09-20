@@ -9,17 +9,10 @@ const COUNTRY= document.getElementById('Countries');
         COUNTRIES.forEach(country => {
           const CountryCard=document.createElement('a');
           CountryCard.className='country-card';
-<<<<<<< HEAD
-          CountryCard.href=`details.html?name=${encodeURIComponent(country.name)}`;
-          const flagImage=document.createElement('img');
-          flagImage.src=country.flags.svg;
-          flagImage.alt=`Flag of ${country.name}`;
-=======
           CountryCard.href='details.html?name${encodeURIComponent(country.name)}';
           const flagImage=document.createElement('img');
           flagImage.src=country.flags.svg;
           flagImage.alt='Flag of ${country.name}';
->>>>>>> 8fce60d314d02d64d7a746580664d26462617702
 
           const CountryName=document.createElement('h3');
           CountryName.textContent=country.name;
