@@ -35,7 +35,7 @@ function renderPage() {
     CountryCard.className = 'country-card';
     CountryCard.href = `details.html?name=${encodeURIComponent(country.name)}`;
     const flagImage = document.createElement('img');
-    flagImage.src = country.flags?.svg || country.flags?.png || "";
+    flagImage.src = country.flags?.svg || country.flags?.png || '';
     flagImage.alt = `Flag of ${country.name}`;
 
     const CountryName = document.createElement('h3');
@@ -119,25 +119,25 @@ async function GetCountryDetails() {
     details.innerHTML = `
           <h2>${counTRY.name}</h2>
           <img src="${counTRY.flags.svg ||counTRY.flags?.png}" alt="Flag of ${counTRY.name}" width="200"></img>
-          <p>Capital:${counTRY.capital || "N/A"}</p>
-          <p>Region:${counTRY.region || "N/A"}</p>
-          <p>Sub-Region:${counTRY.subregion || "N/A"}</p>
-          <p>Population:${counTRY.population || "N/A"}</p>
-          <p>Top-Level-Domain:${counTRY.topLevelDomain?.join(",") || "N/A"}</p>
-          <p>Alpha-2-code:${counTRY.alpha2Code || "N/A"}</p>
-          <p>Alpha-3-code:${counTRY.alpha3Code || "N/A"}</p>
-          <p>CallingCodes:${counTRY.callingCodes?.join(",") || "N/A"}</p>
-          <p>Alternate-Spellings:${counTRY.altSpellings?.join(",") || "N/A"}</p>
-          <p>Demonym:${counTRY.demonym || "N/A"}</p>
-          <p>Area:${counTRY.area || "N/A"}km square</p>
-          <p>Timezones:${counTRY.timezones?.join(",") || "N/A"}</p>
-          <p>Borders:${counTRY.borders?.join(",") || "N/A"}</p>
-          <p>Numeric Code:${counTRY.numericCode || "N/A"}</p>
-          <p>Currencies:${counTRY.currencies && counTRY.currencies.length > 0
+          <p><b>Capital:</b>${counTRY.capital || "N/A"}</p>
+          <p><b>Region:</b>${counTRY.region || "N/A"}</p>
+          <p><b>Sub-Region:</b>${counTRY.subregion || "N/A"}</p>
+          <p><b>Population:</b>${counTRY.population || "N/A"}</p>
+          <p><b>Top-Level-Domain:</b>${counTRY.topLevelDomain?.join(",") || "N/A"}</p>
+          <p><b>Alpha-2-code:</b>${counTRY.alpha2Code || "N/A"}</p>
+          <p><b>Alpha-3-code:</b>${counTRY.alpha3Code || "N/A"}</p>
+          <p><b>CallingCodes:</b>${counTRY.callingCodes?.join(",") || "N/A"}</p>
+          <p><b>Alternate-Spellings:</b>${counTRY.altSpellings?.join(",") || "N/A"}</p>
+          <p><b>Demonym:</b>${counTRY.demonym || "N/A"}</p>
+          <p><b>Area:</b>${counTRY.area || "N/A"}km square</p>
+          <p><b>Timezones:</b>${counTRY.timezones?.join(",") || "N/A"}</p>
+          <p><b>Borders:</b>${counTRY.borders?.join(",") || "N/A"}</p>
+          <p><b>Numeric Code:</b>${counTRY.numericCode || "N/A"}</p>
+          <p><b>Currencies:</b>${counTRY.currencies && counTRY.currencies.length > 0
         ? counTRY.currencies.map(curr => `${curr.name} (${curr.symbol})`).join(", ") : "N/A"}</p>
-          <p>Languages:${counTRY.languages && counTRY.languages.length > 0
+          <p><b>Languages:</b>${counTRY.languages && counTRY.languages.length > 0
         ? counTRY.languages.map(lang => lang.name).join(",") : "N/A"}</p >
-        <p>Regional Blocks:${counTRY.regionalBlocs && counTRY.regionalBlocs.length > 0
+        <p><b>Regional Blocks:</b>${counTRY.regionalBlocs && counTRY.regionalBlocs.length > 0
         ? counTRY.regionalBlocs.map(b => `${b.name}(${b.acronym})`).join(",") : "N/A"}</p>
           `;
   }
