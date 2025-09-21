@@ -1,34 +1,106 @@
 const COUNTRY = document.getElementById('Countries');
+const PAGINATION=document.getElementById('pagination');
+const SEARCHBOX=document.getElementById('searchbox');
 const apiURL = "https://api.allorigins.win/raw?url=https://www.apicountries.com/countries";
 
+
+let COUNTRIES=[];
+let filteredCOUNTRIES=[];
+let currentPage=1;
+const itemsPerPage=30;
 async function GetCountries() {
+  if (!COUNTRY) return;
+
   try {
     const response = await fetch(apiURL);
-    const COUNTRIES = await response.json();
-    COUNTRY.innerHTML = '';
-    COUNTRIES.forEach(country => {
-      const CountryCard = document.createElement('a');
-      CountryCard.className = 'country-card';
-      CountryCard.href = `details.html?name=${encodeURIComponent(country.name)}`;
-      const flagImage = document.createElement('img');
-      flagImage.src = country.flags.svg;
-      flagImage.alt = `Flag of ${country.name}`;
-
-      const CountryName = document.createElement('h3');
-      CountryName.textContent = country.name;
-
-      CountryCard.appendChild(flagImage);
-      CountryCard.appendChild(CountryName);
-      COUNTRY.appendChild(CountryCard);
-    });
+    COUNTRIES = await response.json();
+    filteredCOUNTRIES=COUNTRIES;
+    renderPage();
+    renderPagination();
 
   } catch (error) {
-    COUNTRY.innerHTML = '<p>ERROR IN LOADING THE COUNTRY LIST!!!</p>';
+    COUNTRY.innerHTML = '<p style="color:white;">ERROR IN LOADING THE COUNTRY LIST!!!</p>';
   }
 
 }
 
+function renderPage() {
+  COUNTRY.innerHTML='';
 
+  const startIndex=(currentPage-1)*itemsPerPage;
+  const endIndex=startIndex+itemsPerPage;
+  const countriesToShow=filteredCOUNTRIES.slice(startIndex,endIndex);
+  countriesToShow.forEach(country => {
+    const CountryCard = document.createElement('a');
+    CountryCard.className = 'country-card';
+    CountryCard.href = `details.html?name=${encodeURIComponent(country.name)}`;
+    const flagImage = document.createElement('img');
+    flagImage.src = country.flags?.svg || country.flags?.png || "";
+    flagImage.alt = `Flag of ${country.name}`;
+
+    const CountryName = document.createElement('h3');
+    CountryName.textContent = country.name;
+
+    CountryCard.appendChild(flagImage);
+    CountryCard.appendChild(CountryName);
+    COUNTRY.appendChild(CountryCard);
+  });
+}
+
+function renderPagination() {
+  PAGINATION.innerHTML='';
+  const totalPages=Math.ceil(filteredCOUNTRIES.length/itemsPerPage);
+
+  //prev button
+  if(currentPage>1){
+    const prev=document.createElement('button');
+    prev.textContent="Prev";
+    prev.addEventListener('click',()=>{
+      currentPage--;
+      renderPage();
+      renderPagination();
+    })
+    PAGINATION.appendChild(prev);
+  }
+  //page numbers button
+  for(let i=1;i<=totalPages;i++){
+    const Button=document.createElement('button');
+    Button.textContent=i;
+    if(i==currentPage)Button.classList.add('active');
+    Button.addEventListener('click',()=>{
+      currentPage=i;
+      renderPage();
+      renderPagination();
+    });
+    PAGINATION.appendChild(Button)
+  }
+  //next
+  if(currentPage<totalPages){
+    const next=document.createElement('button');
+    next.textContent="Next";
+    next.addEventListener('click',()=>{
+      currentPage++;
+      renderPage();
+      renderPagination();
+    });
+    PAGINATION.appendChild(next);
+  }
+}
+if(SEARCHBOX){
+  SEARCHBOX.addEventListener('input',()=>{
+  const searchInput=SEARCHBOX.value.toLowerCase();
+  if(searchInput=="")
+    filteredCOUNTRIES=COUNTRIES;
+  else{
+    filteredCOUNTRIES=COUNTRIES.filter(c=>c.name.toLowerCase().includes(searchInput));
+  }
+  currentPage=1;
+  renderPage();
+  renderPagination();
+});
+
+
+}
 async function GetCountryDetails() {
   const details = document.getElementById("country_details")
   if (!details) return;
@@ -37,27 +109,27 @@ async function GetCountryDetails() {
 
   try {
     const response = await fetch(apiURL);
-    const COUNTRIES = await response.json()
-    const counTRY = COUNTRIES.find(c => c.name.toLowerCase() === country_name.toLowerCase());
+    const allCountries = await response.json()
+    const counTRY = allCountries.find(c => c.name.toLowerCase()===country_name.toLowerCase());
     if (!counTRY) {
-      details.innerHTML = `<p>Country Not Found!!!<a href="index.html">BACK</a><p>`;
+      details.innerHTML = `<p style="color:white;">Country Not Found!!!<a href="index.html">BACK</a><p>`;
       return;
     }
 
     details.innerHTML = `
           <h2>${counTRY.name}</h2>
-          <img src="${counTRY.flags.svg}" alt="Flag of ${counTRY.name}" width="200"></img>
+          <img src="${counTRY.flags.svg ||counTRY.flags?.png}" alt="Flag of ${counTRY.name}" width="200"></img>
           <p>Capital:${counTRY.capital || "N/A"}</p>
           <p>Region:${counTRY.region || "N/A"}</p>
-          <p>Sub-Region:${counTRY.subregion || "N/A"}</p><p>Population:${counTRY.population || "N/A"}</p>
+          <p>Sub-Region:${counTRY.subregion || "N/A"}</p>
+          <p>Population:${counTRY.population || "N/A"}</p>
           <p>Top-Level-Domain:${counTRY.topLevelDomain?.join(",") || "N/A"}</p>
           <p>Alpha-2-code:${counTRY.alpha2Code || "N/A"}</p>
           <p>Alpha-3-code:${counTRY.alpha3Code || "N/A"}</p>
-          <p>CallingCodes:${counTRY.CallingCodes?.join(",") || "N/A"}</p>
+          <p>CallingCodes:${counTRY.callingCodes?.join(",") || "N/A"}</p>
           <p>Alternate-Spellings:${counTRY.altSpellings?.join(",") || "N/A"}</p>
           <p>Demonym:${counTRY.demonym || "N/A"}</p>
           <p>Area:${counTRY.area || "N/A"}km square</p>
-          <p>Region:${counTRY.region || "N/A"}</p>
           <p>Timezones:${counTRY.timezones?.join(",") || "N/A"}</p>
           <p>Borders:${counTRY.borders?.join(",") || "N/A"}</p>
           <p>Numeric Code:${counTRY.numericCode || "N/A"}</p>
