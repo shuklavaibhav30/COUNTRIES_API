@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    margin: 0;
+    box-sizing: border-box;
+    background-image: url(image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 1rem;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    margin: 0;
+    padding: 1rem;
+}
+
+.top h2 {
+    font-size: 1.8rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.top p {
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+#searchbox {
+    background: transparent;
+    padding: 0.5em;
+    width: 12rem;
+    border-radius: 1rem;
+    border: 2px solid white;
+}
+
+#Countries {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.country-card {
+    border-color: white;
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.country-card:hover {
+    transform: translateZ(1.25rem)scale(1.5);
+}
+
+.country-card h3 {
+    font-size: 1rem;
+    color: white;
+}
+
+.country-card img {
+    width: 100%;
+    height: 7.5rem;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    margin-bottom: 0.625rem;
+}
+
+#pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+
+#pagination button {
+    padding: 0.5rem 0.7rem;
+    border: none;
+    background-color: rgb(31, 81, 246);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#pagination button:hover {
+    background-color: blue;
+}
+
+#pagination button.active {
+    background-color: black;
+    font-weight: bold;
+}
+
+#country_details {
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+#country_details img {
+    display: block;
+    border-radius: 0.5rem;
+    max-width: 25rem;
+    width: 100%;
+    height: auto;
+    margin: 1rem auto;
+}
+
+#country_details h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#country_details p {
+    line-height: 1.8rem;
+    font-size: ;
+}
+
+button {
+    background: transparent;
+    padding: 0.6rem 1rem;
+    border-radius: 0.7rem;
+    font-size: 0.8rem;
+    color: black;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
+
+/*for responsiveness screen-size<48rem*/
+@media (max-width: 48rem) {
+    .top {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .top h2 {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    #Countries {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+
+    }
+
+    .country-card img {
+        height: 6rem;
+    }
+    .country-card:hover {
+        transform: scale(1.2);
+    }
+
+    #searchbox {
+        width: 75%;
+        font-size: 0.8rem;
+    }
+
+    #country_details h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    #country_details img {
+        max-width: 25rem;
+        width: 100%;
+        height: auto;
+        margin: 1rem 0;
+        border-radius: 0.5rem;
+    }
+
+    #country_details p {
+        font-size: 1rem;
+        margin: 0.3rem 0;
+        line-height: 1.6;
+
+    }
+}
