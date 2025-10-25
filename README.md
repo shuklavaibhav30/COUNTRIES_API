@@ -5,6 +5,8 @@ A responsive web application that displays real-time information about countries
 Built with HTML, CSS, and JavaScript, this project demonstrates API integration, dynamic rendering, and mobile-first design.
 The website fetches and displays a list of countries along with their flags.
 Users can click on any country to view detailed information, such as population, capital, time zones, and more.
+Pagination is implemented on the home page for smooth browsing through the countries list.
+
 
 Website: https://countries-api-brl.vercel.app/
 GitHub Repository: https://github.com/shuklavaibhav30/COUNTRIES_API-BRL
@@ -25,6 +27,8 @@ viii. Language
 4.Loading indicators while fetching data
 5.Fully responsive on mobile, tablet, and desktop
 6.Accessible design (uses aria-label, alt attributes, etc.)
+7.Pagination for easier navigation between countries  
+
 
 Technical Implementations
 
