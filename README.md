@@ -4,6 +4,8 @@ PROJECT OVERVIEW:-
 A responsive web application that displays real-time information about countries using the Countries API.
 Built with HTML, CSS, and JavaScript, this project demonstrates API integration, dynamic rendering, and mobile-first design.
 The website fetches and displays a list of countries along with their flags.
+Users can search for any country by name and browse through pages using pagination.  
+
 Users can click on any country to view detailed information, such as population, capital, time zones, and more.
 Pagination is implemented on the home page for smooth browsing through the countries list.
 
@@ -27,7 +29,10 @@ viii. Language
 4.Loading indicators while fetching data
 5.Fully responsive on mobile, tablet, and desktop
 6.Accessible design (uses aria-label, alt attributes, etc.)
-7.Pagination for easier navigation between countries  
+7.Pagination for easier navigation between countries
+8.Search bar to find countries by name instantly  
+
+
 
 
 Technical Implementations
